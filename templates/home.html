@@ -1,0 +1,299 @@
+<html>
+  <head>
+    <title>POS INDONESIA</title>
+    <hr>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  </head>
+
+
+<script type="text/javascript">
+  
+  // form1
+  function Ongkir(){
+    var harga1 = parseInt(document.getElementById("hrg1").value); 
+    var jumlah1 = parseInt(document.getElementById("jml1").value);
+    var totalHarga1 = harga1*500000;
+    var hargaOngkir = totalHarga1*(10/100);
+    var total1 = totalHarga1+hargaOngkir;
+    document.getElementById("ongkir").value=hargaOngkir;
+    document.getElementById("Total1").value=total1; 
+    document.getElementById("jml1").value=totalHarga1;
+  }
+
+  // form2
+  function cariDiskon(){
+    var harga2 = parseInt(document.getElementById("hrg2").value);
+    var jumlah2 = parseInt(document.getElementById("jml2").value);
+    var diskon = parseInt(document.getElementById("Diskon").value);
+    var totalHarga2 = harga2*jumlah2;
+    var hargaDiskon = totalHarga2*(diskon/100);
+    var total2 = totalHarga2+hargaDiskon;
+    document.getElementById("diskon").value=hargaDiskon;
+    document.getElementById("Total2").value=total2;
+  }  
+
+</script>
+
+
+
+<style type="text/css">
+.button {
+  background-color: #ff6600; /* Green */
+  border: none;
+  color: white;
+  padding: 8px 26px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}  
+     /*Smooth Running Text Start*/
+.scroll-left {
+/* the height is just set to the height of my region. not sure if this is 
+    needed? */
+height: 68px;   
+ overflow: hidden;
+ position: relative;
+ /* I'm using the transparent background as this is in an overlay layout */
+ background: transparent;
+ color: #000000;
+ font-family:proxima nova rg bold;
+ font-size: 28px;
+ font-weight: bold;
+ 
+}
+.scroll-left p {
+ position: absolute;
+ width: 100%;
+ height: 100%;
+ margin: 0;
+ line-height: 50px;
+ text-align: center;
+ /* Starting position */
+ -moz-transform:translateX(100%);
+ -webkit-transform:translateX(100%);  
+ transform:translateX(100%);
+ /* Apply animation to this element */  
+ -moz-animation: scroll-left 28s linear infinite;
+ -webkit-animation: scroll-left 28s linear infinite;
+ animation: scroll-left 28s linear infinite;
+}
+/* Move it (define the animation) */
+@-moz-keyframes scroll-left {
+ 0%   { -moz-transform: translateX(100%); }
+ 100% { -moz-transform: translateX(-100%); }
+}
+@-webkit-keyframes scroll-left {
+ 0%   { -webkit-transform: translateX(100%); }
+ 100% { -webkit-transform: translateX(-100%); }
+}
+@keyframes scroll-left {
+ 0%   { 
+ -moz-transform: translateX(100%); /* Browser bug fix */
+ -webkit-transform: translateX(100%); /* Browser bug fix */
+ transform: translateX(100%);     
+ }
+ 100% { 
+ -moz-transform: translateX(-100%); /* Browser bug fix */
+ -webkit-transform: translateX(-100%); /* Browser bug fix */
+ transform: translateX(-100%); 
+ }
+}     
+     /*Smooth Running Text End*/
+
+}
+ .fakeimg {
+ background-color: white;
+ width: 100%;
+ padding: 20px;
+  }
+</style>
+
+
+
+  <body>
+    <div class="container">
+      <div class="row" align="center">
+        <img src="static/pos.png" width="50%"> 
+<div class="scroll-left">
+<p> Dapatkan diskon 40% pengiriman ke <i>SHANG HAI</i> Up To 500tons, Hanya hari ini.  </p>
+</div>    
+        <hr>
+<div class="container">
+
+  <div class="row">
+    <div class="col-sm-4" style="background-color:white; ">
+      <div class="fakeimg">
+        <img src="static/1.png" width="100%">
+      </div>
+    </div>
+    <div class="col-sm-4" style="background-color:white;">
+      <div class="fakeimg">
+        <img src="static/2.png" width="100%">
+      </div>
+    </div>
+    <div class="col-sm-4" style="background-color:white;">
+      <div class="fakeimg">
+        <img src="static/3.png" width="100%">
+      </div>
+    </div>
+
+  </div>
+</div>  
+<br>
+<div class="alert alert-warning">
+  <strong>Pengumuman</strong> Perubahan jam operasional POS INDONESIA silahkan cek website resmi <strong>www.pos-indoneisa.com</strong>.
+</div>      
+
+<br>
+<br>
+
+        <div class="col-sm-8">
+          <h2 align="center"><strong>Daftar Barang <i>Customer</i></strong></h2>
+         <!-- TABEL BARANG -->
+        
+               
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Nama Barang</th>
+                <th>QYT</th>
+                <th>Harga Beli</th>
+                <th>Harga Jual</th>
+                <th>Diskon (%)</th>
+                <th>Harga Akhir</th>
+                <th>opsi</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              {% for stock in stocks %}
+              <tr>
+                <td>{{stock.namabarang}}</td>
+                <td>{{stock.qytbarang}}</td>
+                <td>Rp.{{stock.hargabeli}}</td>
+                <td>Rp.{{stock.hargajual}}</td>
+                <td>{{stock.diskonbarang}} %</td>
+                <td>{{stock.total}}</td>
+                <td>
+                  <form method="POST" action="./delete" style="display: inline">
+                    <input type="hidden" value="{{stock.namabarang}}" name="namabarang">
+                    <input class="btn btn-danger" type="submit" value="Hapus">
+                  </form>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+
+        <div class="col-sm-4">
+        <!-- NAMBAH FORM BARANG -->
+          <h3 align="center"><strong>TAMBAH STOCK BARANG</strong></h3>
+          <hr>       
+          <form class="form-horizontal" method="POST" action="/" >    
+
+                <div class="form-group">
+                    <label class="control-label col-sm-4" for = "namabarang" style="text-align: left;">Nama Barang  </label>
+                    <div class="col-sm-8">
+                    <input class="form-control" type="text" name="namabarang">
+                    </div>  
+                </div>
+
+
+                <div class="form-group"> 
+                    <label class="control-label col-sm-4" for = "qytbarang" style="text-align: left;">Jumlah Barang  </label>   
+                    <div class="col-sm-8">
+                    <input class="form-control" type="text" name="qytbarang">
+                    </div>
+                </div>
+
+                <div class="form-group">  
+                    <label class="control-label col-sm-4" for="hargabeli" style="text-align: left;">Harga Beli  </label>  
+                    <div class="col-sm-8"> 
+                    <input class="form-control" type="text" name="hargabeli">
+                   </div>
+                </div>
+
+                <div class="form-group">  
+                    <label class="control-label col-sm-4" for="hargajual" style="text-align: left;">Harga Jual  </label>  
+                    <div class="col-sm-8"> 
+                    <input class="form-control" type="text" name="hargajual">
+                   </div>
+                </div>
+
+                <div class="form-group">   
+                    <label class="control-label col-sm-4" for="diskonbarang" style="text-align: left;">Diskon(%) </label>
+                    <div class="col-sm-8">
+                    <input class="form-control" type="text" name="diskonbarang">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-offset-10 ">
+
+                    <input class="button" type="submit" value="TAMBAH" name="tambah">
+                    </form>
+                    </div>
+                </div>
+          </form>  
+          <hr>
+          <hr>
+          <!--  here-->
+          <!-- START SHIPING  -->
+          <h3 align="center"><strong>SHIPING</strong></h3>
+          <form class="form-horizontal" method="" action="" >  
+                <div class="form-group">
+                    <label class="control-label col-sm-4" for = "harga" style="text-align: left;">Total Jauh (KM)  </label>
+                    <div class="col-sm-8">
+                    <input class="form-control" type="text" id="hrg1">
+                    </div>  
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-4" for = "" style="text-align: left;">Harga Pengiriman (100k / KM)   </label>
+                    <div class="col-sm-8">
+                    <input class="form-control" type="text" id="jml1" disabled="">
+                    </div>  
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-4" for = "" style="text-align: left;">Admin (10%)  </label>
+                    <div class="col-sm-8">
+                    <input class="form-control" type="text" name="" disabled="" id="ongkir">
+                    </div>  
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-4" for = "" style="text-align: left;">Total  </label>
+                    <div class="col-sm-8">
+                    <input class="form-control" type="text" name="" id="Total1" disabled="">
+                    </div>  
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-offset-10 ">
+                    <button class="button" type="button" onclick="Ongkir()">Hitung</button>
+                    
+                    </div>
+                </div>
+              </form>
+
+          <!-- END SHIPING -->
+
+        </div>
+
+      </div>
+    </div>
+
+    <hr>
+
+
+  </body>
+</html>

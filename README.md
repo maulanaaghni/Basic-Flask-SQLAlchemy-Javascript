@@ -1,2 +1,2 @@
-# Basic-Flask-SQLAlchemy-Javascript
-Basic implementation FLASK SQLAlchemy and Some Javascript
+# CRUD-Flask-SQLAlchemy
+Simple CRUD system with FLASK and SQLALCHEMY [Bahasa Indonesia]
